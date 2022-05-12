@@ -33,10 +33,10 @@ $(CLIENT)	: $(LIBS) $(OBJS_C)
 # 	$(CC) main.c $(NAME)
 # 	./a.out
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS_C) $(OBJS_S)
 
-fclean:		clean
-		$(RM) $(CLIENT) $(SERVER)
+fclean:	clean
+	$(RM) $(CLIENT) $(SERVER)
 
 re:			fclean	$(CLIENT) $(SERVER)
 

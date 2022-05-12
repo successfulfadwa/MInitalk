@@ -7,7 +7,7 @@
 
 
 
-int main(int argc, char const *argv[])
+int main()
 {
 	/* code */
 	return 0;
