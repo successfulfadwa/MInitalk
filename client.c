@@ -6,11 +6,11 @@
 /*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 01:00:43 by faljaoui          #+#    #+#             */
-/*   Updated: 2022/05/12 01:33:22 by faljaoui         ###   ########.fr       */
+/*   Updated: 2022/05/12 01:38:44 by faljaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
 void sighandler(int sig)
 {
@@ -20,6 +20,7 @@ void sighandler(int sig)
 		exit(EXIT_SUCCESS);
 	}
 }
+
 int send_byte(char c, int server_pid)
 {
 	int	i;
@@ -30,9 +31,9 @@ int send_byte(char c, int server_pid)
 	while(i < 8)
 	{
 		if ()
-			check_pid = kill(SIGUSR1,server_pid);
+			check_pid = kill(server_pid,SIGUSR1);
 		else
-			check_pid = kill(SIGUSR2,server_pid);
+			check_pid = kill(server_pid,SIGUSR2);
 		if (check_pid == -1)
 			return 1;
 		i++;

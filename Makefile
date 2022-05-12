@@ -10,7 +10,7 @@ CFLAGS 	= 	-Wall -Werror -Wextra
 
 RM 		=	rm -f
 
-LIBS	=	libft.h
+LIBS	=	minitalk.h
 
 SERVER	=	server
 

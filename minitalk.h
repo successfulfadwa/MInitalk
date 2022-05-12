@@ -1,6 +1,6 @@
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef MINITALK_H
+# define MINITALK_H
 
 # include <stdlib.h>
 # include <unistd.h>
