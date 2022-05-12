@@ -6,13 +6,13 @@
 /*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 01:00:43 by faljaoui          #+#    #+#             */
-/*   Updated: 2022/05/12 01:38:44 by faljaoui         ###   ########.fr       */
+/*   Updated: 2022/05/12 02:53:59 by faljaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void sighandler(int sig)
+void sighandlermsg(int sig)
 {
 	if (sig == SIGUSR1)
 	{
@@ -30,12 +30,12 @@ int send_byte(char c, int server_pid)
 	check_pid = 0;
 	while(i < 8)
 	{
-		if ()
+		if (c >> i & 1) //1111>>0111 with annd equal 1 send siguser 1; >>4 =0000 &0001 =0 send SIGUSR2
 			check_pid = kill(server_pid,SIGUSR1);
 		else
 			check_pid = kill(server_pid,SIGUSR2);
 		if (check_pid == -1)
-			return 1;
+			return 1;// error
 		i++;
 	}
 	return 0;
@@ -47,6 +47,7 @@ int main(int argc, char const *argv[])
 	int	server_pid;
 
 	i = 0;
+	signal(SIGUSR1, sighandlermsg); // should send signal from server sigusr 1 after msg recive;
 	if (argc != 3)
 		return write(1,"not enough arguments ...",25), 1;
 	server_pid = atoi(argv[1]);
@@ -54,6 +55,7 @@ int main(int argc, char const *argv[])
 	{
 		if(send_byte(argv[2][i],server_pid))
 			return write(1,"pid error",10), 1;
+			//1 for errors
 		i++;
 	}
 	pause();
