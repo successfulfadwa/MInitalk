@@ -6,7 +6,7 @@
 /*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 01:00:43 by faljaoui          #+#    #+#             */
-/*   Updated: 2022/05/12 02:53:59 by faljaoui         ###   ########.fr       */
+/*   Updated: 2022/05/13 01:29:27 by faljaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int send_byte(char c, int server_pid)
 			check_pid = kill(server_pid,SIGUSR1);
 		else
 			check_pid = kill(server_pid,SIGUSR2);
+			
 		if (check_pid == -1)
 			return 1;// error
 		i++;
+		usleep(500);
 	}
 	return 0;
 }
@@ -58,6 +60,5 @@ int main(int argc, char const *argv[])
 			//1 for errors
 		i++;
 	}
-	pause();
 	return 0;
 }

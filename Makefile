@@ -1,8 +1,6 @@
-SRC_S	= 	server.c  my_libft.c
-SRC_C		= 	client.c my_libft.c
+SRC		= 	server.c client.c my_libft.c
 
-OBJS_S	=	${SRC_S:.c=.o}
-OBJS_C	=	${SRC_C:.c=.o}
+OBJS	=	${SRC:.c=.o}
 
 CC		=	cc
 
@@ -10,21 +8,23 @@ CFLAGS 	= 	-Wall -Werror -Wextra
 
 RM 		=	rm -f
 
-LIBS	=	minitalk.h
+LIBS	=	libft.h
 
 SERVER	=	server
 
 CLIENT	=	client
 
+CADD	=	my_libft.c
 
+ADD		=	$(CADD:.c=.o)
 
-all:	$(SERVER) $(CLIENT)
+all:	$(SERVER)
 
-$(SERVER)	: $(LIBS) $(OBJS_S)
-	$(CC) $(CFLAGS)  $(OBJS_S) -o $(SERVER)
+server: $(LIBS) server.o
+	$(CC) $(CFLAGS) server.o $(ADD) -o $@
 
-$(CLIENT)	: $(LIBS) $(OBJS_C)
-	$(CC) $(CFLAGS) $(OBJS_C) -o $(CLIENT)
+client: $(LIBS) client.o
+	$(CC) $(CFLAGS) client.o $(ADD) -o $@
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -33,10 +33,10 @@ $(CLIENT)	: $(LIBS) $(OBJS_C)
 # 	$(CC) main.c $(NAME)
 # 	./a.out
 clean:
-	$(RM) $(OBJS_C) $(OBJS_S)
+	$(RM) $(OBJS)
 
-fclean:	clean
-	$(RM) $(CLIENT) $(SERVER)
+fclean:		clean
+		$(RM) $(CLIENT) $(SERVER)
 
 re:			fclean	$(CLIENT) $(SERVER)
 
