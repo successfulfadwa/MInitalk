@@ -6,43 +6,56 @@
 /*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 01:34:33 by faljaoui          #+#    #+#             */
-/*   Updated: 2022/05/13 01:47:43 by faljaoui         ###   ########.fr       */
+/*   Updated: 2022/05/13 06:37:17 by faljaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void handler1(int signal ,siginfo_t *info, void *nthng)
+void sigaction_hand(int signal, siginfo_t *info, void * barbie)
 {
-	(void)nthng;
-	(void)info;
-	static int i ;
-	static char c ;
-	if(i<8)
+	(void)barbie;
+	static int i;
+	static char c;
+	static int	cid;
+
+	if (cid != info->si_pid)
+	{
+		c = 0;
+		i = 0;
+	}
+	//if pid process tbdl process back to zero and stop pr
+	oces
+	
+	cid = info->si_pid;
+	if(i < 8)
 	{
 		if(signal== SIGUSR1)
-		{
-		(c = c | (1<<i));
-		}
+			c = c | (1<<i);
 		i++;
 	}
 	if (i==8)
 	{
-		write(1,&c,1);
+		if (c==0)
+			kill(info->si_pid,SIGUSR1);
+		write(1, &c, 1);
 		i=0;
 		c=0;
 	}
 }
+
 int main()
 {
-	 int id;
-	 struct sigaction action;
-	id=getpid();
-	ft_putnbr(id);
-	action.sa_sigaction=&handler1;
-	sigaction(SIGUSR1,&action,NULL);
-	sigaction(SIGUSR2,&action,NULL);
+	struct sigaction	clsa;
+int pid;
+pid=getpid();
+ft_putnbr(pid);
+ft_putchar('\n');
+	clsa.sa_flags = SA_SIGINFO;
+	clsa.sa_sigaction = &sigaction_hand;
+	sigaction(SIGUSR1, &clsa, NULL);
+	sigaction(SIGUSR2, &clsa, NULL);
 	while(1)
-	pause();
-	return 0;
+		pause();
+	// return 0;
 }

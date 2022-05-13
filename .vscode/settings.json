@@ -2,6 +2,7 @@
 	"C_Cpp.errorSquiggles": "Disabled",
 	"files.associations": {
 		"minitalk.h": "c",
-		"stdarg.h": "c"
+		"stdarg.h": "c",
+		"KJKJ.C": "cpp"
 	}
 }

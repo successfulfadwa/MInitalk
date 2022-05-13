@@ -6,7 +6,7 @@
 /*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 01:00:43 by faljaoui          #+#    #+#             */
-/*   Updated: 2022/05/13 01:29:27 by faljaoui         ###   ########.fr       */
+/*   Updated: 2022/05/13 05:59:31 by faljaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void sighandlermsg(int sig)
 	if (sig == SIGUSR1)
 	{
 		write(1,"message sent ..",16);
+		ft_putchar('\n');
 		exit(EXIT_SUCCESS);
 	}
 }
@@ -34,7 +35,6 @@ int send_byte(char c, int server_pid)
 			check_pid = kill(server_pid,SIGUSR1);
 		else
 			check_pid = kill(server_pid,SIGUSR2);
-			
 		if (check_pid == -1)
 			return 1;// error
 		i++;
@@ -52,13 +52,17 @@ int main(int argc, char const *argv[])
 	signal(SIGUSR1, sighandlermsg); // should send signal from server sigusr 1 after msg recive;
 	if (argc != 3)
 		return write(1,"not enough arguments ...",25), 1;
-	server_pid = atoi(argv[1]);
+	server_pid = ft_atoi(argv[1]);
+	 printf("%d",server_pid);
 	while (argv[2][i])
 	{
-		if(send_byte(argv[2][i],server_pid))
+		if(send_byte(argv[2][i], server_pid))
 			return write(1,"pid error",10), 1;
 			//1 for errors
 		i++;
+		
 	}
+	send_byte(0,server_pid);
 	return 0;
 }
+ 
