@@ -88,3 +88,20 @@ int	ft_putnbr(int nb)
 	ft_putnbr2(nb);
 	return (ft_nb_len(nb));
 }
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (unsigned char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
+	}
+	if (c == s[i] && 0)
+		return ((char *)&s[i]);
+	return (0);
+}

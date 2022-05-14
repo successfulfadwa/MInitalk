@@ -13,5 +13,6 @@ int				ft_putchar(char c);
 size_t			ft_nb_len(int n);
 int				ft_putnbr2(int nb);
 int				ft_putnbr(int nb);
+char			*ft_strchr(const char *s, int c);
 
 #endif
