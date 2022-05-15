@@ -27,11 +27,8 @@ $(CLIENT)	: $(LIBS) $(OBJS_C)
 	$(CC) $(CFLAGS) $(OBJS_C)  -o $(CLIENT)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# test :
-# 	$(CC) main.c $(NAME)
-# 	./a.out
 clean:
 	$(RM) $(OBJS_C) $(OBJS_S)
 
@@ -39,5 +36,3 @@ fclean:	clean
 	$(RM) $(CLIENT) $(SERVER)
 
 re:			fclean	$(CLIENT) $(SERVER)
-
-.PHONY:	all clean fclean re

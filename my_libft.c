@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_libft.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 05:23:37 by faljaoui          #+#    #+#             */
+/*   Updated: 2022/05/15 06:13:50 by faljaoui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include"minitalk.h"
 
@@ -21,87 +32,36 @@ int	ft_atoi(const char *str)
 	}
 	return (res * sign);
 }
-int	ft_putstr(char const *s)
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putstr(char *s)
 {
 	int	i;
 
-	i = 0;
-	if (s == NULL)
-	{
-		return (ft_putstr("(null)"));
-	}
-	if (s)
-	{
-		while (s[i])
-		{
-			write(1, s + i, 1);
-			i++;
-		}
-	}
-	return (i);
+	i = -1;
+	while (s[++i])
+		ft_putchar(s[i]);
 }
 
-int	ft_putchar(char c)
-{
-	write (1, &c, 1);
-	return (1);
-}
-
-size_t	ft_nb_len(int n)
-{
-	size_t	len;
-
-	if (n == 0)
-		return (1);
-	len = 0;
-	if (n < 0)
-		len++;
-	while (n)
-	{
-		n = n / 10;
-		len++;
-	}
-	return (len);
-}
-
-int	ft_putnbr2(int nb)
+void	ft_putnbr(int nb)
 {
 	if (nb == -2147483648)
+		ft_putstr("-2147483648");
+	else
 	{
-		return (ft_putstr("-2147483648"));
-	}
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -1 * nb;
-	}
-	if (nb > 9)
-	{
-		ft_putnbr(nb / 10);
-	}
-	ft_putchar((nb % 10) + 48);
-	return (0);
-}
-
-int	ft_putnbr(int nb)
-{
-	ft_putnbr2(nb);
-	return (ft_nb_len(nb));
-}
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == (unsigned char)c)
+		if (nb < 0)
 		{
-			return ((char *)&s[i]);
+			ft_putchar('-');
+			nb = -1 * nb;
 		}
-		i++;
+		if (nb > 9)
+		{
+			ft_putnbr(nb / 10);
+		}
+		ft_putchar((nb % 10) + 48);
 	}
-	if (c == s[i] && 0)
-		return ((char *)&s[i]);
-	return (0);
 }

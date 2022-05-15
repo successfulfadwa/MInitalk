@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: faljaoui <faljaoui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/14 05:23:23 by faljaoui          #+#    #+#             */
+/*   Updated: 2022/05/14 05:55:06 by faljaoui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
@@ -8,11 +19,8 @@
 # include <stdio.h>
 
 int				ft_atoi(const char *str);
-int				ft_putstr(char const *s);
-int				ft_putchar(char c);
-size_t			ft_nb_len(int n);
-int				ft_putnbr2(int nb);
-int				ft_putnbr(int nb);
-char			*ft_strchr(const char *s, int c);
+void			ft_putstr(char *s);
+void			ft_putchar(char c);
+void			ft_putnbr(int nb);
 
 #endif
